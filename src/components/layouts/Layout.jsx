@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
+// import clsx from "clx";
 
 import { Menu } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
@@ -54,6 +55,15 @@ const styles = (theme) => ({
   },
   nested: {
     paddingLeft: theme.spacing(4),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column",
+  },
+  fixedHeight: {
+    height: 240,
   },
 });
 
@@ -146,12 +156,16 @@ class Layout extends Component {
 
           <main className={classes.content}>
             <div className={classes.toolbar} />
-            <Grid container spacing={3}>
-              {children}
-            </Grid>
-            <Box pt={4}>
-              <Copyright />
-            </Box>
+            <section>
+              <Grid container spacing={3}>
+                {children}
+              </Grid>
+            </section>
+            <footer>
+              <Box pt={4}>
+                <Copyright />
+              </Box>
+            </footer>
           </main>
         </div>
       </Fragment>
