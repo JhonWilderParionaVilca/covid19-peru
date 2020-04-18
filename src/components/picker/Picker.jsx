@@ -62,31 +62,45 @@ const Picker = ({ handleCountryChange, country }) => {
   const [fetchedCountriesName, setFetchedCountriesName] = useState([]);
 
   useEffect(() => {
+    let isCancelled = false;
     const fetchedData = async () => {
-      const data = await api.fetchNameCountries();
-      setFetchedCountriesName(data);
+      try {
+        const data = await api.fetchNameCountries();
+        if (!isCancelled) {
+          setFetchedCountriesName(data);
+        }
+      } catch (error) {
+        if (!isCancelled) {
+          console.log(error);
+        }
+      }
     };
-
     fetchedData();
-  }, [setFetchedCountriesName]);
+    return () => {
+      isCancelled = true;
+    };
+  }, []);
+
+  const [countrySelect, setCountrySelect] = useState(country);
 
   const handleChange = (event) => {
     handleCountryChange(event.target.value);
+    setCountrySelect(event.target.value);
   };
 
   return (
     <Grid item xs={12} className={classes.root}>
-      <FormControl className={classes.margin}>
+      <FormControl component="form" className={classes.margin}>
         <InputLabel htmlFor="select-country">
           Paises <span></span> 🌎{" "}
         </InputLabel>
         <NativeSelect
           id="select-country"
-          value={country}
+          value={countrySelect}
           onChange={handleChange}
           input={<BootstrapInput />}
         >
-          <option value="global">Global</option>
+          <option value="">Global</option>
 
           {fetchedCountriesName.map((country, index) => (
             <option key={index} value={country}>

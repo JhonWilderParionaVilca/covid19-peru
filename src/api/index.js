@@ -19,7 +19,7 @@ export default {
   async fetchData(country) {
     let url_change = URL_BASE;
 
-    if (country && country !== "global") {
+    if (country) {
       url_change = `${URL_BASE}/countries/${country}`;
     }
 

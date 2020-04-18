@@ -88,7 +88,7 @@ class Layout extends Component {
     const { mobileOpen } = this.state;
 
     const drawer = (
-      <div>
+      <nav>
         <Hidden smDown>
           <div className={classes.toolbar} />
         </Hidden>
@@ -96,16 +96,11 @@ class Layout extends Component {
         <MenuList>
           <MenuItem component={Link} to="/" selected={"/" === pathname}>
             <Typography variant="body2" color="textSecondary" align="center">
-              En el Mundo
-            </Typography>
-          </MenuItem>
-          <MenuItem component={Link} to="/peru" selected={"/peru" === pathname}>
-            <Typography variant="body2" color="textSecondary" align="center">
-              En el Perú
+              En el Mundo <span></span> 🌎
             </Typography>
           </MenuItem>
         </MenuList>
-      </div>
+      </nav>
     );
 
     return (
@@ -123,7 +118,7 @@ class Layout extends Component {
               >
                 <Menu />
               </IconButton>
-              <Typography variant="h6" color="inherit" noWrap>
+              <Typography variant="h6" component="h1" color="inherit" noWrap>
                 COVID-19
               </Typography>
             </Toolbar>
@@ -157,18 +152,17 @@ class Layout extends Component {
             </Drawer>
           </Hidden>
 
-          <main className={classes.content}>
+          <div className={classes.content}>
             <div className={classes.toolbar} />
-            <section>
-              <Grid container spacing={3} justify="center">
-                {children}
-              </Grid>
-            </section>
+
+            <Grid container spacing={3} justify="center" component="main">
+              {children}
+            </Grid>
 
             <footer className={classes.footer}>
               <Copyright />
             </footer>
-          </main>
+          </div>
         </div>
       </Fragment>
     );

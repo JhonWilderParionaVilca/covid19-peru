@@ -20,37 +20,54 @@ export default class extends Component {
       muertos: 0,
     },
     updatedDate: "",
-    country: "global",
+    country: "",
   };
 
   async componentDidMount() {
-    const { confirmed, deaths, recovered, lastUpdate } = await api.fetchData();
+    try {
+      const {
+        confirmed,
+        deaths,
+        recovered,
+        lastUpdate,
+      } = await api.fetchData();
 
-    this.setState({
-      dataCovid: {
-        confirmados: confirmed,
-        recuperados: recovered,
-        muertos: deaths,
-      },
-      updatedDate: lastUpdate,
-    });
+      this.setState({
+        dataCovid: {
+          confirmados: confirmed,
+          recuperados: recovered,
+          muertos: deaths,
+        },
+        updatedDate: lastUpdate,
+      });
+    } catch (error) {
+      return error;
+    }
   }
 
   handleCountryChange = async (country) => {
-    console.log(country);
-    const { confirmed, deaths, recovered, lastUpdate } = await api.fetchData(
-      country
-    );
+    if (country !== this.state.country) {
+      try {
+        const {
+          confirmed,
+          deaths,
+          recovered,
+          lastUpdate,
+        } = await api.fetchData(country);
 
-    this.setState({
-      dataCovid: {
-        confirmados: confirmed,
-        recuperados: recovered,
-        muertos: deaths,
-      },
-      updatedDate: lastUpdate,
-      country: country,
-    });
+        this.setState({
+          dataCovid: {
+            confirmados: confirmed,
+            recuperados: recovered,
+            muertos: deaths,
+          },
+          updatedDate: lastUpdate,
+          country: country,
+        });
+      } catch (error) {
+        return error;
+      }
+    }
   };
 
   render() {
@@ -81,7 +98,7 @@ export default class extends Component {
                       <p> Cargando... </p>
                     )}
 
-                    {country && country !== "global" ? (
+                    {country ? (
                       <BarGraph data={dataCovid} country={country} />
                     ) : (
                       <LineGraph />
@@ -90,7 +107,7 @@ export default class extends Component {
                 );
               }}
             />
-            <Route path="/peru" render={() => <div>Peru</div>} />
+
             <Route component={NotFound} />
           </Switch>
         </Layout>

@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 const BarGraph = ({ data: { confirmados, recuperados, muertos }, country }) => {
   const classes = useStyles();
   return (
-    <Grid item xs={12} className={classes.root}>
+    <Grid item xs={12} className={classes.root} component="section">
       <Paper elevation={3}>
         {confirmados ? (
           <Bar

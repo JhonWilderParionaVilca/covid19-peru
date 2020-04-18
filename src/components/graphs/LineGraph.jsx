@@ -32,7 +32,7 @@ const LineGraph = () => {
     fetchedDailyData();
   }, []);
   return (
-    <Grid item xs={12} className={classes.root}>
+    <Grid item xs={12} className={classes.root} component="section">
       <Paper elevation={3}>
         {dailyData.length ? (
           <Line

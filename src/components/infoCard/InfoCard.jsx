@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 import Countup from "react-countup";
 
@@ -21,18 +21,28 @@ const InfoCard = ({ data, date, country }) => {
   const categories = Object.keys(data);
 
   return (
-    <Fragment>
-      <Typography variant="h6" align="center" color="secondary">
+    <section>
+      <Typography component="h2" variant="h6" align="center" color="secondary">
         {country}
       </Typography>
 
       <Grid item xs={12} className={classes.root}>
         {categories.map((category, index) => (
-          <Paper key={index} elevation={3}>
-            <Typography color="textPrimary" gutterBottom align="center">
+          <Paper key={index} elevation={3} component="article">
+            <Typography
+              color="textPrimary"
+              gutterBottom
+              align="center"
+              component="h2"
+            >
               {category}
             </Typography>
-            <Typography variant="h6" align="center" color="secondary">
+            <Typography
+              component="h3"
+              variant="h6"
+              align="center"
+              color="secondary"
+            >
               <Countup
                 start={0}
                 end={data[category]}
@@ -40,13 +50,13 @@ const InfoCard = ({ data, date, country }) => {
                 separator=","
               />
             </Typography>
-            <Typography variant="caption" color="textSecondary">
+            <Typography component="p" variant="caption" color="textSecondary">
               {`Actualizado a ${date}`}
             </Typography>
           </Paper>
         ))}
       </Grid>
-    </Fragment>
+    </section>
   );
 };
 
