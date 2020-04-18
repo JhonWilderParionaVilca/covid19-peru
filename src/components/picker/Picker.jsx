@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   FormControl,
@@ -8,6 +8,8 @@ import {
   makeStyles,
   NativeSelect,
 } from "@material-ui/core";
+
+import api from "../../api";
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -23,7 +25,6 @@ const BootstrapInput = withStyles((theme) => ({
     fontSize: 16,
     padding: "10px 26px 10px 12px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
@@ -45,38 +46,53 @@ const BootstrapInput = withStyles((theme) => ({
 }))(InputBase);
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+
+    justifyContent: "center",
+  },
   margin: {
-    width: "25ch",
-    marginLeft: "auto",
-    marginRight: "auto",
+    width: "auto",
   },
 }));
 
-const Picker = () => {
+const Picker = ({ handleCountryChange, country }) => {
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
+
+  const [fetchedCountriesName, setFetchedCountriesName] = useState([]);
+
+  useEffect(() => {
+    const fetchedData = async () => {
+      const data = await api.fetchNameCountries();
+      setFetchedCountriesName(data);
+    };
+
+    fetchedData();
+  }, [setFetchedCountriesName]);
+
   const handleChange = (event) => {
-    setAge(event.target.value);
+    handleCountryChange(event.target.value);
   };
 
   return (
-    <Grid item xs={12}>
+    <Grid item xs={12} className={classes.root}>
       <FormControl className={classes.margin}>
         <InputLabel htmlFor="select-country">
           Paises <span></span> 🌎{" "}
         </InputLabel>
         <NativeSelect
           id="select-country"
-          value={age}
+          value={country}
           onChange={handleChange}
           input={<BootstrapInput />}
         >
-          <option aria-label="Global" value={0}>
-            Global
-          </option>
-          <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option>
+          <option value="global">Global</option>
+
+          {fetchedCountriesName.map((country, index) => (
+            <option key={index} value={country}>
+              {country}
+            </option>
+          ))}
         </NativeSelect>
       </FormControl>
     </Grid>

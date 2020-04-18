@@ -15,7 +15,6 @@ import {
   CssBaseline,
   MenuList,
   MenuItem,
-  Box,
   Grid,
 } from "@material-ui/core";
 
@@ -64,6 +63,10 @@ const styles = (theme) => ({
   },
   fixedHeight: {
     height: 240,
+  },
+  footer: {
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(2),
   },
 });
 
@@ -157,14 +160,13 @@ class Layout extends Component {
           <main className={classes.content}>
             <div className={classes.toolbar} />
             <section>
-              <Grid container spacing={3}>
+              <Grid container spacing={3} justify="center">
                 {children}
               </Grid>
             </section>
-            <footer>
-              <Box pt={4}>
-                <Copyright />
-              </Box>
+
+            <footer className={classes.footer}>
+              <Copyright />
             </footer>
           </main>
         </div>
