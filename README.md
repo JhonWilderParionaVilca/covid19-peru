@@ -2,21 +2,26 @@
 
 <p align="center">
   <em>
-    COVID-19 cases 🌎 
+    COVID-19 cases 
   </em>
   <br/>
   <img src="https://i.ibb.co/7QpKsCX/image.png" alt="imagen de covid 19">
+  
+</p>
 
 ![Stability Project][stability-image]
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c164d93e-cb80-41d9-9f90-5a37ba614114/deploy-status)](https://app.netlify.com/sites/covid-19-peru/deploys)
+
+🌎 [Ver en Web](https://covid-19-peru.netlify.app/)
 
 ![covid](covid.gif)
 
 ## 📈 DataSource COVID19-api
 
-| API               |                                                           Fuente |
-| :---------------- | ---------------------------------------------------------------: |
-| **Mundial**       |           [mathdroid](https://github.com/mathdroid/covid-19-api) |
-| **Latinoamerica** | 🔎 |
+| API               |                                                 Fuente |
+| :---------------- | -----------------------------------------------------: |
+| **Mundial**       | [mathdroid](https://github.com/mathdroid/covid-19-api) |
+| **Latinoamerica** |                                                     🔎 |
 
 ## CONTRIBUTORS ✨
 
