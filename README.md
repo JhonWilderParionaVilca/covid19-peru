@@ -9,6 +9,8 @@
 
 ![Stability Project][stability-image]
 
+![covid](covid.gif)
+
 ## 📈 DataSource COVID19-api
 
 | API               |                                                           Fuente |
