@@ -16,7 +16,7 @@
 | API               |                                                           Fuente |
 | :---------------- | ---------------------------------------------------------------: |
 | **Mundial**       |           [mathdroid](https://github.com/mathdroid/covid-19-api) |
-| **Latinoamerica** | [rafnixg](https://github.com/rafnixg/covid-19_latinoamerica_api) |
+| **Latinoamerica** | 🔎 |
 
 ## CONTRIBUTORS ✨
 
