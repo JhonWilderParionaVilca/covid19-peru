@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
+// import clsx from "clx";
 
 import { Menu } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
@@ -14,7 +15,6 @@ import {
   CssBaseline,
   MenuList,
   MenuItem,
-  Box,
   Grid,
 } from "@material-ui/core";
 
@@ -55,6 +55,19 @@ const styles = (theme) => ({
   nested: {
     paddingLeft: theme.spacing(4),
   },
+  paper: {
+    padding: theme.spacing(2),
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column",
+  },
+  fixedHeight: {
+    height: 240,
+  },
+  footer: {
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(2),
+  },
 });
 
 class Layout extends Component {
@@ -75,7 +88,7 @@ class Layout extends Component {
     const { mobileOpen } = this.state;
 
     const drawer = (
-      <div>
+      <nav>
         <Hidden smDown>
           <div className={classes.toolbar} />
         </Hidden>
@@ -83,16 +96,11 @@ class Layout extends Component {
         <MenuList>
           <MenuItem component={Link} to="/" selected={"/" === pathname}>
             <Typography variant="body2" color="textSecondary" align="center">
-              En el Mundo
-            </Typography>
-          </MenuItem>
-          <MenuItem component={Link} to="/peru" selected={"/peru" === pathname}>
-            <Typography variant="body2" color="textSecondary" align="center">
-              En el Perú
+              En el Mundo <span></span> 🌎
             </Typography>
           </MenuItem>
         </MenuList>
-      </div>
+      </nav>
     );
 
     return (
@@ -110,7 +118,7 @@ class Layout extends Component {
               >
                 <Menu />
               </IconButton>
-              <Typography variant="h6" color="inherit" noWrap>
+              <Typography variant="h6" component="h1" color="inherit" noWrap>
                 COVID-19
               </Typography>
             </Toolbar>
@@ -144,15 +152,17 @@ class Layout extends Component {
             </Drawer>
           </Hidden>
 
-          <main className={classes.content}>
+          <div className={classes.content}>
             <div className={classes.toolbar} />
-            <Grid container spacing={3}>
+
+            <Grid container spacing={3} justify="center" component="main">
               {children}
             </Grid>
-            <Box pt={4}>
+
+            <footer className={classes.footer}>
               <Copyright />
-            </Box>
-          </main>
+            </footer>
+          </div>
         </div>
       </Fragment>
     );
