@@ -8,24 +8,24 @@
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.2",
     "@testing-library/user-event": "^10.0.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.3",
     "chart.js": "^2.9.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
     "react-countup": "^4.3.3",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "4.0.0",
+    "react-scripts": "5.0.0",
     "recompose": "^0.30.0",
-    "snyk": "^1.518.0"
+    "@snyk/protect": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepare": "yarn run snyk-protect"
   },
   "eslintConfig": {
