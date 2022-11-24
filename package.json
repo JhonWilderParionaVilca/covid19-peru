@@ -18,14 +18,14 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "5.0.0",
     "recompose": "^0.30.0",
-    "snyk": "^1.996.0"
+    "@snyk/protect": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepare": "yarn run snyk-protect"
   },
   "eslintConfig": {
